@@ -18,8 +18,8 @@ node{
    sh 'docker build -t manojsb2409/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
-    {
-   sh "docker login -u vincenttr19 -p dckr_pat_27TvV5N2PAlrb14VrlwR7l2p3Q4"
+	withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]){
+   sh "docker login -u vincenttr19 -p ${dockerPassword}"
     }
    sh 'docker push manojsb2409/myweb:0.0.2'
    }
